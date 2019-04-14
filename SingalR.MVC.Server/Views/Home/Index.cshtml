@@ -1,0 +1,25 @@
+﻿@{
+	ViewBag.Title = ViewBag.id;
+	Layout = null;
+}
+
+<div class="jumbotron">
+	<h1> @ViewBag.id</h1>
+	<div>   请确认你的信息</div>
+	<input id="input1" />
+	<button id="b01" type="button">确认签到</button>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+	$(document).ready(function () {
+		$("#b01").click(function () {
+			$.post("/home/CheckIn", {
+				id: "@ViewBag.id",
+				name: $("#input1").val()
+			}, function (data, status) {
+				alert("Data: " + data + "\nStatus: " + status);
+			});
+
+		});
+	});
+</script>
